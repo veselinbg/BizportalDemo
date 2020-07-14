@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bizportal.Api
 {
-    public class BizportaLManager<T> : IBizportalManager<T> where T : BaseEntity
+    public class BizportalManager<T> : IBizportalManager<T> where T : BaseEntity
     {
         protected readonly BizportalDbContext _dbContext;
-        public BizportaLManager(BizportalDbContext dbContext)
+        public BizportalManager(BizportalDbContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }

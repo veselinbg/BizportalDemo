@@ -32,11 +32,11 @@ namespace Bizportal.WebApi
                 options.UseSqlServer(Configuration.GetConnectionString("BizportalDemoDb"));
             });
 
-            services.AddScoped<IBizportalManager<Product>, BizportaLManager<Product>>();
-            services.AddScoped<IBizportalManager<Client>, BizportaLManager<Client>>();
-            services.AddScoped<IBizportalManager<Category>, BizportaLManager<Category>>();
-            services.AddScoped<IBizportalManager<Wallet>, BizportaLManager<Wallet>>();
-            services.AddScoped<IBizportalManager<Order>, BizportaLManager<Order>>();
+            services.AddScoped<IBizportalManager<Product>, BizportalManager<Product>>();
+            services.AddScoped<IBizportalManager<Client>, BizportalManager<Client>>();
+            services.AddScoped<IBizportalManager<Category>, BizportalManager<Category>>();
+            services.AddScoped<IBizportalManager<Wallet>, BizportalManager<Wallet>>();
+            services.AddScoped<IBizportalManager<Order>, BizportalManager<Order>>();
 
         }
 

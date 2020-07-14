@@ -14,9 +14,13 @@ namespace Bizportal.Api.NUnit
 {
     public class BizportalUnitTests
     {
+        private readonly string _url;
+        private readonly TestServer _server;
+        private readonly HttpClient _client;
+
         private Uri GetUrl(string baseEntity)
         {
-            return new Uri($"https://localhost:44372/Api/{baseEntity}");
+            return new Uri($"{_url}{baseEntity}");
         }
         private HttpContent CreateContent<T>(T entity)
         {
@@ -47,9 +51,6 @@ namespace Bizportal.Api.NUnit
             return baseEntity;
         }
 
-        private readonly TestServer _server;
-        private readonly HttpClient _client;
-
         public BizportalUnitTests()
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
@@ -57,8 +58,10 @@ namespace Bizportal.Api.NUnit
             .AddJsonFile("appsettings.json")
             .Build();
 
+            _url = configuration["WebApiUrl"];
+
             var webHostBuilder = new WebHostBuilder().UseStartup<Startup>();
-            webHostBuilder.UseEnvironment("Development").UseConfiguration(configuration);
+            webHostBuilder.UseConfiguration(configuration);
 
             _server = new TestServer(webHostBuilder);
             _client = _server.CreateClient();
